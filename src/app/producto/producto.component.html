@@ -1,0 +1,36 @@
+<form [formGroup]="productoForm" (ngSubmit)="onSubmit()" autocomplete="false">
+    <div class="form-group">
+        <h5  *ngIf="productoForm.controls.id.errors" style='color: red;'>**</h5><h5  *ngIf="!productoForm.controls.id.errors"></h5>
+        <label for="id" >id</label>
+        <input id="id" class="form-control" type="text" name="id" #id formControlName="id">
+   
+    </div>
+    <div class="form-group">
+        <label for="codigo">Codigo</label>
+        <input id="codigo" class="form-control" type="text" name="codigo" formControlName="codigo" #codigo>
+    </div>
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" class="form-control" type="text" name="nombre" formControlName="nombre" #nombre>
+    </div>
+
+    <div class="form-group">
+        <label for="marca">Marca</label>
+        <input id="marca" class="form-control" type="text" name="marca" formControlName="marca" #marca>
+    </div>
+    <div class="form-group">
+        <label for="modelo">Modelo</label>
+        <input id="modelo" class="form-control" type="text" name="modelo" formControlName="modelo" #modelo>
+    </div>
+    <div class="form-group">
+        <label for="cantidad">Cantidad</label>
+        <input id="cantidad" class="form-control" type="number" name="cantidad" formControlName="cantidad" #cantidad>
+    </div>
+    <div class="form-group">
+        <label for="valor">Precio $</label>
+        <input id="valor" class="form-control" type="valor" name="valor" formControlName="valor" #valor>
+    </div>
+    <div class="form-control">
+        <input type="submit" value="Guardar" >
+    </div>
+</form>
