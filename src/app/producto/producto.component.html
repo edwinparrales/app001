@@ -1,36 +1,109 @@
-<form [formGroup]="productoForm" (ngSubmit)="onSubmit()" autocomplete="false">
-    <div class="form-group">
-        <h5  *ngIf="productoForm.controls.id.errors" style='color: red;'>**</h5><h5  *ngIf="!productoForm.controls.id.errors"></h5>
-        <label for="id" >id</label>
-        <input id="id" class="form-control" type="text" name="id" #id formControlName="id">
-   
-    </div>
-    <div class="form-group">
-        <label for="codigo">Codigo</label>
-        <input id="codigo" class="form-control" type="text" name="codigo" formControlName="codigo" #codigo>
-    </div>
-    <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input id="nombre" class="form-control" type="text" name="nombre" formControlName="nombre" #nombre>
+<div class="container container-fluid">
+  <div class="mb-3"><h3 class="text-center text-bg-success">Formulario registro Catalogo de productos</h3></div>
+  <form [formGroup]="productoForm"  autocomplete="false">
+
+    <div class="row mb-2">
+      <label for="id" class="col-md-1 col-form-label">id</label>
+      <div class="col-md-6">
+        <input id="id" class="form-control form-text" type="text" name="id" #id formControlName="id" readonly>
+      </div>
+      <div class="col-md-5">
+        <h6 *ngIf="productoForm.controls.id.errors" style='color: red;font-size: small'>** El campo es requerido..</h6><h6
+        *ngIf="!productoForm.controls.id.errors"></h6>
+      </div>
     </div>
 
-    <div class="form-group">
-        <label for="marca">Marca</label>
+
+    <div class="row mb-2">
+      <label class="col-md-1 col-form-label" for="codigo">Codigo</label>
+      <div class="col-md-6">
+        <input id="codigo" class="form-control" type="text" name="codigo" formControlName="codigo" #codigo >
+      </div>
+      <div class="col-md-5 ">
+        <h6 *ngIf="productoForm.controls.codigo.errors" style='color: red;font-size: small'>** El campo es requerido,No debe estar repetido en la BD</h6><h6
+        *ngIf="!productoForm.controls.codigo.errors"></h6>
+      </div>
+
+    </div>
+
+    <div class="row mb-2">
+      <label class="col-md-1 col-form-label" for="descripcion">Nombre</label>
+      <div class="col-md-6">
+        <input id="descripcion" class="form-control" type="text" name="descripcion" formControlName="descripcion" #descripcion>
+
+      </div>
+      <div class="col-md-5">
+        <h6 *ngIf="productoForm.controls.descripcion.errors" style='color: red;font-size: small'>** El campo es requerido..</h6><h6
+        *ngIf="!productoForm.controls.descripcion.errors"></h6>
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <label class="col-md-1 col-form-label" for="marca">Marca</label>
+
+      <div class="col-md-6">
         <input id="marca" class="form-control" type="text" name="marca" formControlName="marca" #marca>
+      </div>
+      <div class="col-md-5">
+
+      </div>
+
     </div>
-    <div class="form-group">
-        <label for="modelo">Modelo</label>
+
+    <div class="row mb-2">
+      <label class="col-md-1 col-form-label" for="modelo">Modelo</label>
+      <div class="col-md-6">
         <input id="modelo" class="form-control" type="text" name="modelo" formControlName="modelo" #modelo>
+      </div>
+      <div class="col-md-5">
+
+      </div>
     </div>
-    <div class="form-group">
-        <label for="cantidad">Cantidad</label>
-        <input id="cantidad" class="form-control" type="number" name="cantidad" formControlName="cantidad" #cantidad>
+    <div class="row mb-2">
+      <label class="col-md-1 col-form-label" for="categoria">Categoria</label>
+       <div class="col-md-6">
+         <input id="categoria" class="form-control" type="text" name="categoria" formControlName="categoria" #categoria>
+       </div>
+      <div class="col-md-5">
+        <h6 *ngIf="productoForm.controls.categoria.errors" style='color: red;font-size: small'>** El campo es requerido..</h6><h6
+        *ngIf="!productoForm.controls.categoria.errors"></h6>
+      </div>
+
     </div>
-    <div class="form-group">
-        <label for="valor">Precio $</label>
-        <input id="valor" class="form-control" type="valor" name="valor" formControlName="valor" #valor>
+    <div class="row mb-2">
+      <label class="col-md-1 col-form-label" for="capacidad">Capacidad</label>
+       <div class="col-md-6">
+         <input id="capacidad" class="form-control" type="text" name="capacidad" formControlName="capacidad" #capacidad>
+       </div>
+      <div class="col-md-5">
+
+      </div>
+
     </div>
-    <div class="form-control">
-        <input type="submit" value="Guardar" >
+    <div class="row mb-2">
+      <label class="col-md-1 col-form-label" for="cantidad">Cantidad</label>
+      <div class="col-md-6">
+        <input id="cantidad" class="form-control" type="number" min="1" name="cantidad" formControlName="cantidad" #cantidad>
+      </div>
+      <div class="col-md-5">
+        <h6 *ngIf="productoForm.controls.cantidad.errors" style='color: red;font-size: small'>** El campo es requerido..</h6><h6
+        *ngIf="!productoForm.controls.cantidad.errors"></h6>
+      </div>
+
     </div>
-</form>
+    <div class="row mb-2">
+      <label class="col-md-1 col-form-label form-text" for="valor">Precio$.COP</label>
+      <div class="col-md-6">
+        <input id="valor" class="form-control" type=number min="0" name="valor" formControlName="valor" #valor>
+      </div>
+       <div class="col-md-5">
+         <h6 *ngIf="productoForm.controls.valor.errors" style='color: red;font-size: small'>** El campo es requerido..</h6><h6
+         *ngIf="!productoForm.controls.valor.errors"></h6>
+       </div>
+    </div>
+    <div class="row">
+      <input class="btn btn-success col-md-4 m-2" type="submit" value="Guardar" (click)="onSubmit()">
+      <input class="btn btn-dark col-md-4 m-2" type="submit" value="Nuevo" (click)="cleanFrm()">
+    </div>
+  </form>
+</div>

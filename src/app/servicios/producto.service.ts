@@ -1,36 +1,43 @@
 import { Injectable } from '@angular/core';
 import {ClienteModel} from "../modelos/cliente.model";
+import {Producto} from "../modelos/producto.model";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {
-  public clientes:Array<ClienteModel>;
-  constructor() {
-    this.clientes = [
-      new ClienteModel(
-        5,
-        "16942367",
-        "Edwin Parrales",
-        "Cali",
-        "Villanueva",
-      "Calle 32 Ni32-04",
-        "Epro82@gmail-com",
-        "3163502651"),
-      new ClienteModel(
-        6,
-        "565656",
-        "Gustavo Petro",
-        "Bogota",
-        "Kenedy",
-        "Calle 32 Ni32-04",
-        "kenedy@gmail-com",
-        "316355555"),
-
-    ];
+export class ProductoService {
+  public productos:Array<Producto>;
+  private urlEndPoint:string
+  private httpHeaders = new HttpHeaders({'Content-Type':'application/json','Access-Control-Allow-Origin':'*'});
+  constructor(private httpClient: HttpClient) {
+    this.productos = [];
+    this.urlEndPoint="http://localhost:8080/api/producto/"
   }
 
-  getClientes = () => {
-   return this.clientes;
+
+
+  listar(): Observable<Producto[]>{
+    return this.httpClient.get(this.urlEndPoint+"listar").pipe(
+      map((response:any) => response as Producto[])
+    );
   }
+  crear(producto:Producto):Observable<Producto>{
+
+    return this.httpClient.post<Producto>(this.urlEndPoint+"crear",producto,{headers:this.httpHeaders});
+  }
+  eliminar = (id:number):Observable<any>=>{
+    return this.httpClient.delete(`${this.urlEndPoint}${id}`);
+  }
+  actualizar(id: any, data: Producto): Observable<Producto> {
+    return this.httpClient.put(`${this.urlEndPoint}actualizar/${id}`,data,{headers:this.httpHeaders})
+      .pipe(
+        map((response:any) => response as Producto))
+  }
+
+  buscar = (id:number):Observable<any>=>{
+    return this.httpClient.get(`${this.urlEndPoint}buscarid/${id}`);
+  }
+
 }
