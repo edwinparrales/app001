@@ -28,7 +28,7 @@ export class ProductoService {
     return this.httpClient.post<Producto>(this.urlEndPoint+"crear",producto,{headers:this.httpHeaders});
   }
   eliminar = (id:number):Observable<any>=>{
-    return this.httpClient.delete(`${this.urlEndPoint}${id}`);
+    return this.httpClient.delete(`${this.urlEndPoint}eliminar/${id}`);
   }
   actualizar(id: any, data: Producto): Observable<Producto> {
     return this.httpClient.put(`${this.urlEndPoint}actualizar/${id}`,data,{headers:this.httpHeaders})
