@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Producto} from '../modelos/producto.model';
 import {ProductoService} from "../servicios/producto.service";
-import {ActivatedRoute, ParamMap, Params} from "@angular/router";
+import {ActivatedRoute, ParamMap, Params, Router} from "@angular/router";
 
 
 @Component({
@@ -13,9 +13,12 @@ import {ActivatedRoute, ParamMap, Params} from "@angular/router";
 export class ProductoComponent implements OnInit {
   productoForm: any;
   producto: any;
+  routerx:Router;
 
   constructor(private pf: FormBuilder, private prodService: ProductoService, private activatedRoute: ActivatedRoute
-  ) {
+  ,route:Router)
+  {
+    this.routerx=route;
     this.crearFormulario();
   }
 
@@ -73,12 +76,19 @@ export class ProductoComponent implements OnInit {
     }
     if(pro.id>=1){
       this.prodService.actualizar(pro.id,pro).subscribe(
-        data => console.log("Actualizando",data)
+        data => {
+          console.log("Actualizando",data)
+           this.routerx.navigate(['producto'])
+        }
       )
 
     }else{
       this.prodService.crear(pro).subscribe(
-        data => console.log("Creando",data)
+        data => {
+
+          console.log("Creando",data);
+          this.routerx.navigate(['producto'])
+        }
       );
     }
 
